@@ -18,9 +18,9 @@ public class HomeController {
     public String home(Model model){ //이건그냥 test용 data 만드는거..
         Member member = new Member();
         member.setJoindate();
-        member.setEmail("rlaworms0905@naver.com");
+        member.setEmail("worms0905@gmail.com");
         member.setNickname("gogos");
-        member.setPassword("dhfl0123");
+        member.setPassword("1234");
         memberRepository.save(member);
 
         return "home";
