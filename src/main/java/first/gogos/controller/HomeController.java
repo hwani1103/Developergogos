@@ -23,7 +23,6 @@ public class HomeController {
         member.setPassword("dhfl0123");
         memberRepository.save(member);
 
-        System.out.println("홈 호출 ok");
         return "home";
     }
 

@@ -35,7 +35,7 @@ public class MemberController {
         }
         member.setJoindate();
         memberRepository.save(member);
-        return "redirect:/";
+        return "joinsuccess";
     }
 
 

@@ -47,7 +47,6 @@ public class LoginController {
             //왜 세션이 미리 없으면. 세션ID가 겟요청으로 redirect랑 같이 날라가는거임 ??
             HttpSession session = request.getSession();
             session.setAttribute("loginMember", findMember.get(0));
-            System.out.println("도대체뭐임???????????");
 
             return "redirect:/";
         } else {
