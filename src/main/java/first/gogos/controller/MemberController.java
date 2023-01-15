@@ -33,10 +33,10 @@ public class MemberController {
         if(result.hasErrors()){
             return "join";
         }
-
         member.setJoindate();
         memberRepository.save(member);
         return "redirect:/";
-
     }
+
+
 }

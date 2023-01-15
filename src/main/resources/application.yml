@@ -17,3 +17,9 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
+# 이 밑으로 5줄. 이거 세션생성하고 redirect:/할때 URL에 JSESSIONID붙어서 가던건데 이거 설정해서 해결함.
+server:
+  servlet:
+    session:
+      timeout: 30m
+      tracking-modes: cookie

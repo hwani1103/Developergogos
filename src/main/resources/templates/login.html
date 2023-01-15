@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link href="bootstrap/css/BS-Toy1.css" rel="stylesheet">
+  <link href="/bootstrap/css/BS-Toy1.css" rel="stylesheet">
   <script
           src="https://code.jquery.com/jquery-3.6.3.min.js"
           integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -45,7 +45,7 @@
           <a class="nav-link " href="/members/new">회원가입</a>
         </li>
         <li class="nav-item " id="login">
-          <a class="nav-link " href="/members/login" >로그인</a>
+          <a class="nav-link " href="/members/login">로그인</a>
         </li>
         <li class="nav-item " id="logout">
           <a class="nav-link " href="#">로그아웃</a>
@@ -62,46 +62,57 @@
 </nav>
 
 
-<!-- 메인화면 캐러셀 -->
-<div class="carousel-container">
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/사진/mainimg.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/사진/mainimg.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/사진/mainimg.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/사진/mainimg.jpg" class="d-block w-100" alt="...">
-      </div>
-    </div>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
+<!-- 로그인 시작 -->
+<div class="join-container">
+  <div class="alert alert-dark w-75" role="alert">
+    <p class="font-style-s">로그인 페이지입니다.</p>
+    <p class="font-style-s">정보를 알맞게 입력해 주세요.</p>
   </div>
+  <br />
+
+
+  <form action="/members/login" th:object="${member}" method="post">
+    <div class="input-group mb-3 w-75">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+        >E-mail</span
+        >
+      <input
+              type="text" th:field="*{email}"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'"><br>
+
+    </div>
+      <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect date</p>
+        <!-- 이 p태그에서 @NotEmpty 필드에러랑, 내가 email못찾았을때 추가한 필드에러 두개를 다 받는것같다. -->
+    <br />
+    <div class="input-group mb-3 w-75">
+        <span class="input-group-text" id="inputGroup-sizing-default"
+        >비밀번호</span
+        >
+      <input
+              type="password" th:field="*{password}"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'"><br>
+    </div>
+      <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Incorrect date</p>
+
+    <div th:if="${#fields.hasGlobalErrors()}">
+      <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+         th:text="${err}">글로벌 오류 메시지</p>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-secondary">로그인</button>
+  </form> <!-- 폼 끝. 버튼에 submit 추가-->
+
+
+
 </div>
-<!-- 메인화면 캐러셀 끝-->
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 로그인 끝 -->
 
 
 
