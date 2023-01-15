@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository
-@Transactional  //서비스만들어서해야함.
+@Transactional  //서비스만들어서해봐야되는데.
 public class MemberRepository {
 
     @PersistenceContext
