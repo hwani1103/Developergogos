@@ -1,0 +1,33 @@
+.hide{
+    visibility:hidden;
+}
+
+
+.carousel-container{
+    margin-left:auto;
+    margin-right:auto;
+    width : 80%;
+}
+
+.join-container{
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+    width : 80%;
+    
+}
+
+
+.font-style-s{
+    font-size:20px;
+    color:black;
+}
+
+.font-style-ss{
+    font-size:16px;
+}
+
+.fieldError {
+    border-color: #bd2130;
+    border-radius:5px;
+}
