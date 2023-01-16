@@ -21,7 +21,8 @@ public class MemberController {
     /**
      *아..이게 음.. 회원가입 누르면 . 여기로 와서 빈객체를 가지고 join.html로 가게 돼있구나.
      * 그거의 역할은? 빈객체의 역할은? 밸리데이션. 회원가입해서 딱 눌렀을때 검증에 실패하면
-     * 다시
+     * BindingResult에 담아지는데 이 때 에러의 정보랑 member객체의 field랑 정보가 바인딩돼서 담기게 됨. 빈객체를 줘놔야.
+     * 더 자세한 설명 알게되면 새로고침하자.
      */
     @GetMapping("/members/new")
     public String joinMember(@ModelAttribute("member") Member member){
