@@ -1,0 +1,94 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="/bootstrap/css/BS-Toy1.css" rel="stylesheet">
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"
+    ></script>
+</head>
+<body>
+
+<div th:insert="~{template/fragment/template_header :: header}"></div>
+
+
+
+
+<!-- 게시글 타이틀 -->
+<div class="board" style="height:50px; border:none;">
+    <div style="float:left; margin:7px; margin-left:20px;"> <h4>게시판 처음 만드는데 너무 어렵네요 ㅜㅜ</h4></div>
+    <div style="float:right; margin:10px;"><p>01/17</p></div>
+    <div style="float:right; margin:10px;"><p>고고스</p></div>
+</div>
+<!-- 게시글 타이틀 -->
+
+
+<!-- 게시글 내용 -->
+<div class="board" style="height:500px; text-align:left; padding:20px;">
+    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
+        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.</p>
+</div>
+<!-- 게시글 내용 -->
+
+
+<!-- 페이징 -->
+<div class="board" style="border:none;">
+    <nav aria-label="Page navigation example" style="display:inline-block;">
+        <ul class="pagination" >
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous" style=" color:red;">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li> <!-- 숫자 스타일 지정가능 -->
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">6</a></li>
+            <li class="page-item"><a class="page-link" href="#">7</a></li>
+            <li class="page-item"><a class="page-link" href="#">8</a></li>
+            <li class="page-item"><a class="page-link" href="#">9</a></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next" style=" color:red;">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- 페이징 -->
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

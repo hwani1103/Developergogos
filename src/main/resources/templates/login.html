@@ -11,56 +11,12 @@
           integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
           crossorigin="anonymous"
   ></script>
+
+
+
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid" style="background:rgb(229, 240, 240); border-radius:10px;"> <!-- 이부분이 헤더-->
-    <a class="navbar-brand" style="color:rgb(5, 64, 75);" href="/">gogo's First Project</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
-          <a class="nav-link active" style="font-size:large;" aria-current="page" href="#">포트폴리오</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">자유게시판</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            명언
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">성공 마인드</a></li>
-            <li><a class="dropdown-item" href="#">투자</a></li>
-            <li><a class="dropdown-item" href="#">사업</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item ">
-          <a class="nav-link " href="/members/new">회원가입</a>
-        </li>
-        <li class="nav-item " id="login">
-          <a class="nav-link " href="/members/login">로그인</a>
-        </li>
-        <li class="nav-item " id="logout">
-          <a class="nav-link " href="#">로그아웃</a>
-        </li>
-      </ul>
-
-
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" style="width:100px" type="submit">조회</button>
-      </form>
-    </div>
-  </div>
-</nav>
-
+<div th:insert="~{template/fragment/template_header :: header}"></div>
 
 <!-- 로그인 시작 -->
 <div class="join-container">
@@ -70,23 +26,24 @@
   </div>
   <br />
 
+  <form th:object="${loginMember}" method="post">
 
-  <form th:object="${member}" method="post">
     <div class="input-group mb-3 w-75">
-        <span class="input-group-text" id="inputGroup-sizing-default"
-        >E-mail</span
-        >
+        <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
       <input
               type="text" th:field="*{email}"
-              class="form-control"
+              class="form-control "
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               th:class="${#fields.hasErrors('email')}? 'form-control fieldError' : 'form-control'"><br>
+
 
     </div>
       <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Incorrect date</p>
         <!-- 이 p태그에서 @NotEmpty 필드에러랑, 내가 email못찾았을때 추가한 필드에러 두개를 다 받는것같다. -->
     <br />
+
+
     <div class="input-group mb-3 w-75">
         <span class="input-group-text" id="inputGroup-sizing-default"
         >비밀번호</span

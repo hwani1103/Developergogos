@@ -25,11 +25,12 @@ public class LoginController {
 
     private final MemberRepository memberRepository;
     @GetMapping("/members/login")
-    public String loginPage(@ModelAttribute("member") LoginMember member) {
+    public String loginPage(@ModelAttribute("loginMember") LoginMember loginMember) {
+    //...... ModelAttribute loginMember로 해야되는데 member로 해가지고 개고생했음.. 조인쪽에 중복이라 그런듯 하다..
         return "login";
     }
 
-    @PostMapping("/members/login") //아나 이거 왜 RequestParam안먹냐!!!!!!!!!다시봐보자 ppt부터..
+    @PostMapping("/members/login") //아나 이거 왜 RequestParam안먹냐!!!!!!!!!다시봐보자 ppt부터.. //이거 html form action 고쳐서 해결함.
     public String login(@Valid @ModelAttribute LoginMember member, BindingResult result
                     , @RequestParam(defaultValue = "/") String redirectURL, HttpServletRequest request) {
         if (result.hasErrors()) { //bean validation으로 낫엠프티 검증에 걸린경우.
@@ -53,8 +54,14 @@ public class LoginController {
             result.addError(new ObjectError("member", "비밀번호가 일치하지 않습니다."));
             return "login"; //비밀번호 불일치.
         }
+    }
 
-
+    @GetMapping("/members/logout")
+    public String logout(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
     }
 }
-

@@ -2,6 +2,14 @@
     visibility:hidden;
 }
 
+.board{
+    border:1px solid black;
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1%;
+    text-align:center;
+}
 
 .carousel-container{
     margin-left:auto;
@@ -10,11 +18,10 @@
 }
 
 .join-container{
-    margin-top:5%;
+    margin-top:3%;
     margin-left:auto;
     margin-right:auto;
     width : 80%;
-    
 }
 .center{
     margin:auto;
