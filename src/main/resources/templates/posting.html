@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="/bootstrap/css/BS-Toy1.css" rel="stylesheet">
     <script
             src="https://code.jquery.com/jquery-3.6.3.min.js"
@@ -17,78 +18,88 @@
 <div th:insert="~{template/fragment/template_header :: header}"></div>
 
 
+<div class="posting-main">
+    <div th:object="${board}">
+        <h4 th:text="*{title}">게시판에 글을 쓰러 왔어요</h4>
+        <i style="float:left;" th:text="*{member.nickname}">천하제일자바맨</i>
+        <i style="float:right;" th:text="*{#temporals.format(writeTime, 'yyyy-MM-dd')}"> 01/17 15:30 </i>
+        <textarea class="posting-content" readonly th:field="*{content}">열심히 쓰고 갈게요 ㅋㅋㅋㅋㅋㅋ</textarea>
+    </div>
+
+    <div class="commentwrite" >
+        <div class="commentmember">
+            <div style="
+              width: 40px;
+              height: 40px;
+              border-radius: 100px;
+              border: 2px solid rgb(255, 56, 1);
+              margin-left: auto;
+              margin-right: auto;">
+            </div>
+            <p th:text="${board.member.nickname}">작성자 닉네임</p>
+        </div>
+        <form action="/comment/write" method="post" th:object="${comment}">
+        <textarea
+                class="commentcontent-W"
+                placeholder="댓글을 달아 주세요 :)"
+                th:field="*{content}"
+        ></textarea>
+
+        <button
+                type="submit"
+                class="btn btn-secondary"
+                style="float: right; margin: 5px">작성하기
+        </button>
+        </form>
+        <div style="clear: both">
+        </div>
 
 
-<!-- 게시글 타이틀 -->
-<div class="board" style="height:50px; border:none;">
-    <div style="float:left; margin:7px; margin-left:20px;"> <h4>게시판 처음 만드는데 너무 어렵네요 ㅜㅜ</h4></div>
-    <div style="float:right; margin:10px;"><p>01/17</p></div>
-    <div style="float:right; margin:10px;"><p>고고스</p></div>
+        <div class="commentmember">
+            <div style="
+              width: 40px;
+              height: 40px;
+              border-radius: 100px;
+              border: 2px solid rgb(94, 41, 200);
+              margin-left: auto;
+              margin-right: auto;"></div>
+            <p>고고스</p>
+        </div>
+        <textarea class="commentcontent-R" readonly>아 진짜요? ㅋㅋㅋ</textarea>
+
+        <div class="commentmember">
+            <div
+                    style="
+              width: 40px;
+              height: 40px;
+              border-radius: 100px;
+              border: 2px solid rgb(237, 12, 204);
+              margin-left: auto;
+              margin-right: auto;"></div>
+            <p>김팔각</p>
+        </div>
+        <textarea class="commentcontent-R" readonly>헐 대박 ㅋㅋ</textarea>
+
+        <div class="commentmember">
+            <div
+                    style="
+              width: 40px;
+              height: 40px;
+              border-radius: 100px;
+              border: 2px solid rgb(216, 248, 13);
+              margin-left: auto;
+              margin-right: auto;"></div>
+            <p>황총새</p>
+        </div>
+        <textarea class="commentcontent-R" readonly>
+새해 복 많이 받으셈</textarea
+        >
+    </div>
 </div>
-<!-- 게시글 타이틀 -->
 
 
-<!-- 게시글 내용 -->
-<div class="board" style="height:500px; text-align:left; padding:20px;">
-    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Tempore ad, doloremque in fugit quae quod architecto, fugiat provident impedit iure,
-        veritatis eligendi est deserunt temporibus qui voluptatibus dolorem dolore quidem.</p>
-</div>
-<!-- 게시글 내용 -->
-
-
-<!-- 페이징 -->
-<div class="board" style="border:none;">
-    <nav aria-label="Page navigation example" style="display:inline-block;">
-        <ul class="pagination" >
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous" style=" color:red;">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li> <!-- 숫자 스타일 지정가능 -->
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">6</a></li>
-            <li class="page-item"><a class="page-link" href="#">7</a></li>
-            <li class="page-item"><a class="page-link" href="#">8</a></li>
-            <li class="page-item"><a class="page-link" href="#">9</a></li>
-            <li class="page-item"><a class="page-link" href="#">10</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next" style=" color:red;">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-<!-- 페이징 -->
-
-
-
-
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package first.gogos.repository;
 
 import first.gogos.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,10 +11,10 @@ import java.util.List;
 
 @Repository
 @Transactional  //서비스만들어서해봐야되는데.
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
-    EntityManager em;
+    private final EntityManager em;
 
     public Long save(Member member) {
         em.persist(member);

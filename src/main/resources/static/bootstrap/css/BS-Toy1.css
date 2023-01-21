@@ -2,6 +2,14 @@
     visibility:hidden;
 }
 
+.center{
+    margin:auto;
+    position: relative;
+    top: 55%;
+    transform: translateY(20%);
+
+}
+
 .board{
     border:1px solid black;
     width:80%;
@@ -9,6 +17,69 @@
     margin-right:auto;
     margin-top:1%;
     text-align:center;
+}
+
+.posting-main{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1%;
+    height:1000px;
+}
+
+.board-title{
+    padding:10px;
+    width:20%;
+    text-align:center;
+    margin:5px;
+    margin-bottom:10px;
+}
+.posting-title{
+    border:1px solid black;
+    padding:10px;
+    margin:5px;
+    border-radius:10px;
+    width:100%;
+    height:50px;
+}
+.posting-content{
+    border:1px solid black;
+    padding:20px;
+    margin:5px;
+    border-radius:10px;
+    width:100%;
+    height:400px;
+    resize:none;
+}
+
+.commentwrite{
+    padding:10px;
+    margin:5px;
+    width:100%;
+    height:100px;
+}
+.commentmember{
+    width:20%;
+    height:100%;
+    border-radius:10px;
+    text-align:center;
+    float:left;
+}
+.commentcontent-W{
+    width:80%;
+    float:left;
+    height:100%;
+    border-radius:10px;
+    resize:none;
+    padding:20px;
+}
+.commentcontent-R{
+    width:80%;
+    float:left;
+    height:100%;
+    border:none;
+    resize:none;
+    padding:20px;
 }
 
 .carousel-container{
@@ -23,13 +94,7 @@
     margin-right:auto;
     width : 80%;
 }
-.center{
-    margin:auto;
-    position: relative;
-    top: 55%;
-    transform: translateY(20%);
 
-}
 
 .font-style-s{
     font-size:20px;

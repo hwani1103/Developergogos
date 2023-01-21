@@ -22,7 +22,6 @@ public class HomeController {
         member.setNickname("gogos");
         member.setPassword("1234");
         memberRepository.save(member);
-
         return "home";
     }
 

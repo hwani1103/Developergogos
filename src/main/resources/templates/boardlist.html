@@ -21,7 +21,7 @@
 
 
 <div class="board">
-
+  <div class="board-title"><h5>자유게시판</h5></div>
   <table class="table">
     <thead>
     <tr>
@@ -35,8 +35,8 @@
     <tbody>
     <tr>
       <th>1</th>
-      <td>김똥개</td>
-      <td><a href="/board/number">나는 천재다</a></td>
+      <td>천하제일자바맨</td>
+      <td><a href="/board/number">게시판에 글을 쓰러 왔어요</a></td>
       <td>01/17</td>
       <td>0</td>
     </tr>
@@ -96,7 +96,9 @@
       </li>
     </ul>
   </nav>
-
+  <form action="/board/write" method="get">
+  <button type="submit" class="btn btn-secondary" style="float:right; margin:10px;">작성하기</button>
+  </form>
 </div>
 
 

@@ -37,17 +37,17 @@ public class LoginController {
             return "login";
         }
 
-        List<Member> findMember = memberRepository.findByEmail(member.getEmail());
-        if (findMember.size() == 0) {
+        List<Member> findMemberByEmail = memberRepository.findByEmail(member.getEmail());
+        if (findMemberByEmail.size() == 0) {
             result.addError(new FieldError("member", "email", "일치하는 Email이 없습니다."));
             return "login"; //여기서 FieldError 해준게, 저위에 기본 validation에서 생성해준 필드에러를 받는 쪽이랑 연결된듯.
         }
 
-        if (findMember.get(0).getPassword().equals(member.getPassword())) {
+        if (findMemberByEmail.get(0).getPassword().equals(member.getPassword())) {
             //지금 왜 세션이 미리 있을땐 괜찮은데 없을땐 오류가 나지? true로 해야되는건가 아닌데
             //왜 세션이 미리 없으면. 세션ID가 겟요청으로 redirect랑 같이 날라가는거임 ?? -->yml설정으로 해결.구글링
             HttpSession session = request.getSession();
-            session.setAttribute("loginMember", findMember.get(0));
+            session.setAttribute("loginMember", findMemberByEmail.get(0));
 
             return "redirect:" + redirectURL;
         } else {
