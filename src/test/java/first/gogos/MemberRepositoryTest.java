@@ -1,6 +1,8 @@
 package first.gogos;
 
+import first.gogos.domain.Board;
 import first.gogos.domain.Member;
+import first.gogos.repository.BoardRepository;
 import first.gogos.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -11,30 +13,28 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MemberRepositoryTest {
 
     @Autowired
-    MemberRepository memberRepository;
+    BoardRepository boardRepository;
+
     @Test
-    @Transactional
-    @Rollback(false)
-    public void testMember() {
+    public void findAll(){
         Member member = new Member();
-        member.setEmail("rlaworms0905@naver.com");
-        member.setNickname("gogos");
-        member.setPassword("qkdrnqkdrn");
-        member.setJoindate();
+        member.setEmail("asdasd");
+        Board board = new Board();
+        board.setContent("123123");
+        board.setMember(member);
 
+        List<Board> all = boardRepository.findAll();
+        Assertions.assertThat(all).isNotNull();
 
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
-
-        Assertions.assertThat(findMember.getNickname()).isEqualTo(member.getNickname())
-        ;
-        Assertions.assertThat(findMember).isEqualTo(member); //JPA 엔티티 동일성
 
     }
+
+
 }

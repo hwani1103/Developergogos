@@ -3,7 +3,6 @@ package first.gogos.domain;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -28,7 +27,7 @@ public class Board {
 
     private String content; // 게시물 내용
 
-    private int viewCnt; // 조회수
+    private int viewCnt = 0; // 조회수
 
     private LocalDateTime writeTime; // 작성 시간
 

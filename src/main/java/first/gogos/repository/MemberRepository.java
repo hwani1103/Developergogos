@@ -3,17 +3,17 @@ package first.gogos.repository;
 import first.gogos.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
+
+/**
+ * findMember 메서드에서, getSingleResult()쪽에 문제있음. email에 unique제약조건을 못걸었고
+ * query결과가 null일경우 예외발생함. 예외처리 일단 급한대로 하긴 했는데 리팩토링 필요
+ */
 
 @Repository
-@Transactional  //서비스만들어서해봐야되는데.
 @RequiredArgsConstructor
 public class MemberRepository {
-
     private final EntityManager em;
 
     public Long save(Member member) {
@@ -25,16 +25,16 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
-    public List<Member> findByEmail(String email){
-        List resultList = em.createQuery("select m from Member m where m.email=:email", Member.class)
-                .setParameter("email", email)
-                .getResultList();
-
-        return resultList;
+    public Member findMember(String email) {
+        Member member;
+        try {
+            member = em.createQuery("select m from Member m where m.email=:email", Member.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (RuntimeException e) {
+            return null;
+        }
+        return member;
     }
-
-
-
-
 
 }

@@ -1,12 +1,8 @@
 package first.gogos;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import javax.servlet.Filter;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -18,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(2)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/", "/members/login", "/members/join", "/bootstrap/**",
+                        "/", "/login", "/members/join", "/bootstrap/**",
                         "/members/new", "/members/**",
                         "/image/**", "/template/**"
                 );

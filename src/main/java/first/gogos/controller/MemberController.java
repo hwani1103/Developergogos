@@ -1,43 +1,82 @@
 package first.gogos.controller;
 
 
+import first.gogos.domain.LoginMember;
 import first.gogos.domain.Member;
-import first.gogos.repository.MemberRepository;
+import first.gogos.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/members")
 public class MemberController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
-    /**
-     *아..이게 음.. 회원가입 누르면 . 여기로 와서 빈객체를 가지고 join.html로 가게 돼있구나.
-     * 그거의 역할은? 빈객체의 역할은? 밸리데이션. 회원가입해서 딱 눌렀을때 검증에 실패하면
-     * BindingResult에 담아지는데 이 때 에러의 정보랑 member객체의 field랑 정보가 바인딩돼서 담기게 됨. 빈객체를 줘놔야.
-     * 더 자세한 설명 알게되면 새로고침하자.
-     */
-    @GetMapping("/members/new")
-    public String joinMember(@ModelAttribute("member") Member member){
+    @GetMapping("/new")
+    public String join(@ModelAttribute Member member){
         return "join";
     }
 
-    @PostMapping("/members/new")
-    public String join(@Valid @ModelAttribute("member") Member member, BindingResult result){
+    @PostMapping("/new")
+    public String join(@Valid @ModelAttribute Member member, BindingResult result){
         if(result.hasErrors()){
             return "join";
         }
         member.setJoindate();
-        memberRepository.save(member);
+        memberService.join(member);
         return "joinsuccess";
     }
+
+    //=====================로그인=========================//
+    @GetMapping("/login")
+    public String login(@ModelAttribute("loginMember") LoginMember loginMember) {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid @ModelAttribute("loginMember") LoginMember loginMember, BindingResult result,
+                        @RequestParam(defaultValue = "/") String redirectURL,
+                        HttpServletRequest request) {
+        if (result.hasErrors()) {
+            return "login";
+        }
+        Member findMemberByEmail = memberService.findMemberByEmail(loginMember.getEmail());
+        if(findMemberByEmail==null){
+            result.addError(new FieldError("member", "email", "일치하는 Email이 없습니다."));
+            return "login";
+        }
+        if(findMemberByEmail.getPassword().equals(loginMember.getPassword())){
+            HttpSession session = request.getSession();
+            session.setAttribute("loginMember", findMemberByEmail);
+            return "redirect:" + redirectURL;
+
+        } else {
+            result.addError(new ObjectError("member", "비밀번호가 일치하지 않습니다."));
+            return "login";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
+    }
+
+
+
 
 
 }

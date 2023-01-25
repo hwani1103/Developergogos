@@ -33,41 +33,51 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th>1</th>
-      <td>천하제일자바맨</td>
-      <td><a href="/board/number">게시판에 글을 쓰러 왔어요</a></td>
-      <td>01/17</td>
-      <td>0</td>
+<!--    <tr th:each="item : ${items}">-->
+<!--      <td><a href="item.html" th:href="@{/basic/items/{itemId}-->
+<!--(itemId=${item.id})}" th:text="${item.id}">회원id</a></td>-->
+<!--      <td><a href="item.html" th:href="@{|/basic/items/${item.id}|}"-->
+<!--             th:text="${item.itemName}">상품명</a></td>-->
+<!--      <td th:text="${item.price}">10000</td>-->
+<!--      <td th:text="${item.quantity}">10</td>-->
+<!--    </tr>-->
+
+
+    <tr th:each="board : ${boardList}">
+      <th th:text="${board.id}">1</th>
+      <td th:text="${board.member.nickname}">천하제일자바맨</td>
+      <td th:text="${board.title}">게시판에 글을 쓰러 왔어요</a></td>
+      <td th:text="*{#temporals.format(board.writeTime, 'yyyy-MM-dd')}">01/17</td>
+      <td th:text="${board.viewCnt}">0</td>
     </tr>
-    <tr>
-      <th>2</th>
-      <td>김똥개</td>
-      <td>고고스</td>
-      <td>01/17</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>김똥개</td>
-      <td>고고스</td>
-      <td>01/17</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>김똥개</td>
-      <td>고고스</td>
-      <td>01/17</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>김똥개</td>
-      <td>고고스</td>
-      <td>01/17</td>
-      <td>0</td>
-    </tr>
+<!--    <tr>-->
+<!--      <th>2</th>-->
+<!--      <td>김똥개</td>-->
+<!--      <td>고고스</td>-->
+<!--      <td>01/17</td>-->
+<!--      <td>0</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>3</th>-->
+<!--      <td>김똥개</td>-->
+<!--      <td>고고스</td>-->
+<!--      <td>01/17</td>-->
+<!--      <td>0</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>4</th>-->
+<!--      <td>김똥개</td>-->
+<!--      <td>고고스</td>-->
+<!--      <td>01/17</td>-->
+<!--      <td>0</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <th>5</th>-->
+<!--      <td>김똥개</td>-->
+<!--      <td>고고스</td>-->
+<!--      <td>01/17</td>-->
+<!--      <td>0</td>-->
+<!--    </tr>-->
 
     </tbody>
   </table>
@@ -76,21 +86,18 @@
   <nav aria-label="Page navigation example" style="display:inline-block;">
     <ul class="pagination" >
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous" style=" color:red;">
+        <a class="page-link" href="#" th:href="|/board/list/${page.startPage}|" aria-label="Previous" style=" color:red;">
           <span aria-hidden="true">&laquo;</span>
         </a>
+
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li> <!-- 숫자 스타일 지정가능 -->
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">4</a></li>
-      <li class="page-item"><a class="page-link" href="#">5</a></li>
-      <li class="page-item"><a class="page-link" href="#">6</a></li>
-      <li class="page-item"><a class="page-link" href="#">7</a></li>
-      <li class="page-item"><a class="page-link" href="#">8</a></li>
-      <li class="page-item"><a class="page-link" href="#">9</a></li>
-      <li class="page-item"><a class="page-link" href="#">10</a></li>
+      <span th:each="paging : ${paging}"> <!-- 오케이!! 개별 페이지 만들어서 해보자!! -->
+      <li class="page-item"><a class="page-link" href="#" th:href="|/board/list/${paging}|" th:text="${paging}"></a></li> <!-- 숫자 스타일 지정가능 -->
+      </span>
+
+
       <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next" style=" color:red;">
+        <a class="page-link" href="#" th:href="|/board/list/${page.endPage}|" aria-label="Next" style=" color:red;">
           <span aria-hidden="true">&raquo;</span>
         </a>
       </li>

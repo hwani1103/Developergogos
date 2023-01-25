@@ -38,12 +38,14 @@
             </div>
             <p th:text="${board.member.nickname}">작성자 닉네임</p>
         </div>
+
         <form action="/comment/write" method="post" th:object="${comment}">
         <textarea
                 class="commentcontent-W"
                 placeholder="댓글을 달아 주세요 :)"
                 th:field="*{content}"
         ></textarea>
+
 
         <button
                 type="submit"
