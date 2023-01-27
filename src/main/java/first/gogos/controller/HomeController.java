@@ -35,7 +35,7 @@ public class HomeController {
             member.setPassword("1234");
             memberService.join(member);
         }
-        for(int i=1; i<=200; i++){
+        for(int i=1; i<=50; i++){
             Board board = new Board();
             board.setMember(member);
             board.setTitle(i + "번째 게시물");

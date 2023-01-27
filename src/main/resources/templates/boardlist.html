@@ -85,7 +85,7 @@
 <!-- 페이징. -->
   <nav aria-label="Page navigation example" style="display:inline-block;">
     <ul class="pagination" >
-      <li class="page-item">
+      <li class="page-item" th:unless="${page.startPage == 0}">
         <a class="page-link" href="#" th:href="|/board/list/${page.startPage}|" aria-label="Previous" style=" color:red;">
           <span aria-hidden="true">&laquo;</span>
         </a>
@@ -96,7 +96,7 @@
       </span>
 
 
-      <li class="page-item">
+      <li class="page-item" th:if="${(page.endPage-page.startPage) == 11}">
         <a class="page-link" href="#" th:href="|/board/list/${page.endPage}|" aria-label="Next" style=" color:red;">
           <span aria-hidden="true">&raquo;</span>
         </a>

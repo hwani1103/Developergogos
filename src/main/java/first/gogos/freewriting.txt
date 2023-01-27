@@ -1,0 +1,120 @@
+위 로직을 구현하기 위해서, index%10을 사용함. index%10 : navSize를 구하는데, navSize는 최대 10이기때문에
+index는 게시물이 많아질수록 계속 증가하지만 index%10은 1,2,3,4,5,6,7,8,9,0 의 값을 반복해서 갖는다.
+이제 조건을 분기해보자.
+
+1. [index<10]
+   index가 10보다 작다는건 게시물이 180개 이하라는거고, 이 때의 navSize는 index랑 같다.
+   즉 navSize = index%10;
+
+2. [index==10] 로직을 처음에 잘못 짜서 그런거 같다. 무튼 index가 10인경우 특별하게 navSize를 10으로 지정해줘야 함.
+   --> index가 10인경우는 게시물 181개부터라서, navSize가 10이어야 함.
+   즉 navsize = 10;
+
+3. [index>10]
+   이때가 복잡한데. index가 10보다 크다는거는 게시물이 201개 이상이라는거고, 이때부터는 navSize가 pageNav에 따라서 바뀌어야 한다.
+   3-1. [pageNav>index]
+        예를 들어 게시물이 250개가 있을때, index는 13이다. 그리고 필요한 navSize는 3이다. 그런데 pageNav가 14나 15로 들어온다?
+        이미 예외상황인거네. 게시물이 250개가 있으면 nav는 11, 12, 13만 접근할 수 있어야 함.
+        [pageNav == index]
+        게시물이 250개, index는 13이고, 필요한 nav가 11,12,13인데 pageNav로 13을 요청했다. 그러면 index%10을 보여주면 된다.
+        [pageNav < index]
+        게시물이 250개, index는 13이고, nav가 11,12,13인데 예를들어 11을 눌렀다. 그러면 역시 index%10을 보여주면 된다.?
+        이게 끝인가? 노노
+        pageNav가 index보다 작을 때, 11,12,13을 눌렀으면 index%10이 맞지만
+        pageNav가 5 혹은 10 이라면? navSize는 10을 보여줘야됨.
+        index 가 11~19일떄는 v%10, 20일때는 10, index가 11~19인데 pageNav가 10이하일때는 다시 10
+        그러니까 index가 13일때는, 13이면서 pageNav가 11이상일때 v%10인데. 그럼 index가 23일때는? 다시 pageNav가 21이상일때 v%10이다.
+
+        내가생각한로직은.
+        index가 13인데 .pageNav가 11~20이라면. v%10을 하고
+        index가 13인데 pageNav가 11보다 작다면. navSize를 해라 이거면되겠다
+
+        int index = 13;
+        int pageNav = 21;
+        int x = index / 10 * 10;
+        System.out.println((x < pageNav && pageNav <= x+10) );
+
+int x = index / 10 * 10;
+if(index<10){
+    navSize = index%10;
+    }else if(index==10){
+    navSize = 10;
+    }else if(index>10){
+       if(x < pageNav && pageNav <= x+10){
+            navSize = index%10;
+       }      navSize = 10;
+       }
+    }
+
+
+
+
+
+
+
+int index = (int) Math.ceil(N / 20.0f);
+if(pageNav > index) pageNav = index; // pageNav는 총 게시물 수 나누기 20보다 클 수 없다.
+
+            int v = (int) Math.ceil(N / 20.0f);
+            if (v % 10 != 0 && pageNav > (N/20)) {
+                navSize = v % 10;
+
+            } else
+                navSize = 10;
+
+
+
+
+총 게시물 수  = 250
+기존 pageNav = 10
+index = 13
+pageNav = 10
+getStartPage = 0
+getEndPage = 11
+navSize = 10
+paging.nav.length = 10
+pageNav = 10
+N = 250
+
+총 게시물 수  = 250
+기존 pageNav = 13
+index = 13
+pageNav = 13
+getStartPage = 10
+getEndPage = 14
+navSize = 3
+paging.nav.length = 3
+pageNav = 13
+N = 250
+
+
+
+
+
+<li class="page-item" th:unless="${page.startPage == 0}">
+
+
+<li class="page-item" th:if="${(page.endPage-page.startPage) == 11}">
+
+
+
+
+<는
+startPage가 1이면
+안보이면됨.
+startPage?
+
+
+endPage랑 startPage의 차이가.
+처음에 셋팅이
+endPage는 11
+startPage는 0임
+
+그다음에는
+10이랑 21이겠지?
+
+21 - 10은 11이지
+
+end에서 start 뺀게 11일때만 >를 보여주면 되겠는데
+
+
