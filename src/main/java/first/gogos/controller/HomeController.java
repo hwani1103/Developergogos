@@ -35,15 +35,6 @@ public class HomeController {
             member.setPassword("1234");
             memberService.join(member);
         }
-        for(int i=1; i<=50; i++){
-            Board board = new Board();
-            board.setMember(member);
-            board.setTitle(i + "번째 게시물");
-            board.setWriteTime(LocalDateTime.now());
-            boardService.addPosting(board);
-        }
-
-
 
         return "home";
     }

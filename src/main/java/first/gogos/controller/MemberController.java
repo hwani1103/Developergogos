@@ -24,11 +24,13 @@ public class MemberController {
 
     @GetMapping("/new")
     public String join(@ModelAttribute Member member){
+        System.out.println("joing member before" + member);
         return "join";
     }
 
     @PostMapping("/new")
     public String join(@Valid @ModelAttribute Member member, BindingResult result){
+        System.out.println("joing member after" + member);
         if(result.hasErrors()){
             return "join";
         }

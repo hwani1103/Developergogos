@@ -56,6 +56,10 @@ th:class="${session.loginMember==null ? ' 'nav-link' : 'nav-link hide'
         </li>
       </ul>
 
+      <h5 class="nav-item" th:unless="${session.loginMember==null}">
+        <a class="nav-link " unabled
+        th:text="|${session.loginMember.nickname}님 ㅎㅇ|"></a>
+      </h5>
 
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -68,6 +72,8 @@ th:class="${session.loginMember==null ? ' 'nav-link' : 'nav-link hide'
           >로그아웃</a>
         </li>
       </ul>
+
+
 
     </div>
   </div>

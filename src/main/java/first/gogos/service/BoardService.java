@@ -26,6 +26,19 @@ public class BoardService {
     public int getCount(){
         return boardRepository.getCount();
     }
+
+    public Board read(Long id){
+        return boardRepository.findOne(id);
+    }
+
+    public Board update(Board update){
+        return boardRepository.update(update);
+    }
+
+    public void delete(Long id){
+        boardRepository.delete(id);
+    }
+
 //    public Paging paging(){
 //        return boardRepository.paging();
 //    }

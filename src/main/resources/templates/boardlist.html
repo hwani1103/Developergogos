@@ -46,7 +46,7 @@
     <tr th:each="board : ${boardList}">
       <th th:text="${board.id}">1</th>
       <td th:text="${board.member.nickname}">천하제일자바맨</td>
-      <td th:text="${board.title}">게시판에 글을 쓰러 왔어요</a></td>
+      <td><a href="#" th:text="${board.title}" th:href="|/board/read/${board.id}|"></a></td>
       <td th:text="*{#temporals.format(board.writeTime, 'yyyy-MM-dd')}">01/17</td>
       <td th:text="${board.viewCnt}">0</td>
     </tr>

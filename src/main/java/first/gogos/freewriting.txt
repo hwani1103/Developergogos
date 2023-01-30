@@ -1,3 +1,38 @@
+자자자자자
+해야되는거
+
+개별게시물기능. --> 요청된 게시물 번호를 토대로 해당하는 게시물을 찾아와서 posting에 띄워준다.
+일단 Controller가 있어야겠고
+boardList에 link도 있어야하고.
+Controller는 겟맵핑으로
+board/read/{boardNo} 이런식으로
+
+board/read/{boardNo} 개별 게시물 읽기
+읽기 단건조회 쿼리
+board/delete/{boardNo} 개별 게시물 삭제
+board/update/{boardNo} 개별 게시물 수정
+
+
+댓글기능.
+게시물 수정기능
+게시물 삭제기능
+
+게시물 최신화 버그수정
+
+
+
+insert into board (board_category, content, member_id, title, view_cnt, write_time, id)
+values ('자유', '자유', 1, '자유', 1, '2022-01-10', 1);
+
+
+> 버튼이 게시물 200개 이하일땐 생기면안되고 201개일땐 생겨야함.
+  201개일때 생기면 다시 없어야하고. 근데 없는건 로직에 들어있음.
+  문제는 200개일때, 400개일때, 600개일때 생긴다는게 문제
+  endPage를 정하는 로직이?
+
+
+
+
 위 로직을 구현하기 위해서, index%10을 사용함. index%10 : navSize를 구하는데, navSize는 최대 10이기때문에
 index는 게시물이 많아질수록 계속 증가하지만 index%10은 1,2,3,4,5,6,7,8,9,0 의 값을 반복해서 갖는다.
 이제 조건을 분기해보자.

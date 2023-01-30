@@ -19,89 +19,150 @@
 
 
 <div class="posting-main">
-    <div th:object="${board}">
-        <h4 th:text="*{title}">게시판에 글을 쓰러 왔어요</h4>
-        <i style="float:left;" th:text="*{member.nickname}">천하제일자바맨</i>
-        <i style="float:right;" th:text="*{#temporals.format(writeTime, 'yyyy-MM-dd')}"> 01/17 15:30 </i>
-        <textarea class="posting-content" readonly th:field="*{content}">열심히 쓰고 갈게요 ㅋㅋㅋㅋㅋㅋ</textarea>
+    <div th:object="${read}">
+        <h4 th:text="*{title}">게시글 제목</h4>
+        <i style="float:left;" th:text="*{member.nickname}">닉네임</i>
+        <i style="float:right;" th:text="*{#temporals.format(writeTime, 'yyyy-MM-dd')}">작성일</i>
+        <textarea class="posting-content" readonly th:field="*{content}">내용</textarea>
     </div>
 
-    <div class="commentwrite" >
-        <div class="commentmember">
-            <div style="
-              width: 40px;
-              height: 40px;
-              border-radius: 100px;
-              border: 2px solid rgb(255, 56, 1);
-              margin-left: auto;
-              margin-right: auto;">
+
+    <!--    <div th:if="${read.member.nickname == session.loginMember.nickname}">-->
+    <!--    <form th:action="|/board/delete/${read.id}|" method="get">-->
+    <!--        <button type="submit" class="btn btn-secondary"-->
+    <!--                data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+    <!--                style="float:right; margin:10px;" id="delete">삭제하기</button>-->
+    <!--    </form>-->
+
+    <div th:if="${read.member.nickname == session.loginMember.nickname}">
+            <button type="button" class="btn btn-secondary"
+                    data-bs-toggle="modal" data-bs-target="#deleteModal"
+                    style="float:right; margin:10px;">삭제하기
+            </button>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">게시물 삭제</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        정말로 삭제하실겁니까?ㅇㅅㅇ
+                    </div>
+                    <div class="modal-footer">
+                        <form th:action="|/board/delete/${read.id}|" method="get">
+                        <button type="submit" class="btn btn-primary">삭제!!</button>
+                        </form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소!!</button>
+                    </div>
+                </div>
             </div>
-            <p th:text="${board.member.nickname}">작성자 닉네임</p>
         </div>
 
-        <form action="/comment/write" method="post" th:object="${comment}">
-        <textarea
-                class="commentcontent-W"
-                placeholder="댓글을 달아 주세요 :)"
-                th:field="*{content}"
-        ></textarea>
+<!--        <button type="button" class="btn btn-secondary"-->
+<!--                data-bs-toggle="modal" data-bs-target="#updateModal"-->
+<!--                style="float:right; margin:10px;">수정하기-->
+<!--        </button>-->
 
 
-        <button
-                type="submit"
-                class="btn btn-secondary"
-                style="float: right; margin: 5px">작성하기
-        </button>
+<!--        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">-->
+<!--            <div class="modal-dialog">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h1 class="modal-title fs-5" id="updateModalLabel">게시물 삭제</h1>-->
+<!--                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body">-->
+<!--                        정말로 수정하실겁니까?ㅇㅅㅇ-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <form th:action="|/board/update/${read.id}|" method="get">-->
+<!--                            <button type="submit" class="btn btn-primary">수정!!</button>-->
+<!--                        </form>-->
+<!--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소!!</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
+
+
+
+        <form th:action="|/board/update/${read.id}|" method="get">
+            <button type="submit" class="btn btn-secondary" style="float:right; margin:10px;">수정하기</button>
         </form>
-        <div style="clear: both">
-        </div>
-
-
-        <div class="commentmember">
-            <div style="
-              width: 40px;
-              height: 40px;
-              border-radius: 100px;
-              border: 2px solid rgb(94, 41, 200);
-              margin-left: auto;
-              margin-right: auto;"></div>
-            <p>고고스</p>
-        </div>
-        <textarea class="commentcontent-R" readonly>아 진짜요? ㅋㅋㅋ</textarea>
-
-        <div class="commentmember">
-            <div
-                    style="
-              width: 40px;
-              height: 40px;
-              border-radius: 100px;
-              border: 2px solid rgb(237, 12, 204);
-              margin-left: auto;
-              margin-right: auto;"></div>
-            <p>김팔각</p>
-        </div>
-        <textarea class="commentcontent-R" readonly>헐 대박 ㅋㅋ</textarea>
-
-        <div class="commentmember">
-            <div
-                    style="
-              width: 40px;
-              height: 40px;
-              border-radius: 100px;
-              border: 2px solid rgb(216, 248, 13);
-              margin-left: auto;
-              margin-right: auto;"></div>
-            <p>황총새</p>
-        </div>
-        <textarea class="commentcontent-R" readonly>
-새해 복 많이 받으셈</textarea
-        >
     </div>
+
+    <!--    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+    <!--        Launch demo modal-->
+    <!--    </button>-->
+
+
+    <!-- th:href="|/board/list/${page.endPage}|" -->
+    <!--    <div class="commentwrite" >-->
+    <!--        <div class="commentmember">-->
+    <!--            <div style="-->
+    <!--              width: 40px;-->
+    <!--              height: 40px;-->
+    <!--              border-radius: 100px;-->
+    <!--              border: 2px solid rgb(255, 56, 1);-->
+    <!--              margin-left: auto;-->
+    <!--              margin-right: auto;">-->
+    <!--            </div>-->
+    <!--            <p th:text="${board.member.nickname}">작성자 닉네임</p>-->
+    <!--        </div>-->
+
+    <!--        <form action="/comment/write" method="post" th:object="${comment}">-->
+    <!--        <textarea-->
+    <!--                class="commentcontent-W"-->
+    <!--                placeholder="댓글을 달아 주세요 :)"-->
+    <!--                th:field="*{content}"-->
+    <!--        ></textarea>-->
+
+
+    <!--        <button-->
+    <!--                type="submit"-->
+    <!--                class="btn btn-secondary"-->
+    <!--                style="float: right; margin: 5px">작성하기-->
+    <!--        </button>-->
+    <!--        </form>-->
+    <!--        <div style="clear: both">-->
+    <!--        </div>-->
+
+
+    <!--        <div class="commentmember">-->
+    <!--            <div style="-->
+    <!--              width: 40px;-->
+    <!--              height: 40px;-->
+    <!--              border-radius: 100px;-->
+    <!--              border: 2px solid rgb(94, 41, 200);-->
+    <!--              margin-left: auto;-->
+    <!--              margin-right: auto;"></div>-->
+    <!--            <p>고고스</p>-->
+    <!--        </div>-->
+    <!--        <textarea class="commentcontent-R" readonly>아 진짜요? ㅋㅋㅋ</textarea>-->
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+
+
 </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
+<!--<script>-->
+<!--    $("#delete").click(function(){-->
+<!--        window.alert("정말로 삭제하시겠습니까?")-->
+<!--    });-->
+<!--</script>-->
+
 </body>
 </html>
